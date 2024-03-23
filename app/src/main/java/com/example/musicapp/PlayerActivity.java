@@ -45,7 +45,7 @@ public class PlayerActivity extends AppCompatActivity {
         GetIntentMethod();
 
         exoPlayer = new ExoPlayer.Builder(PlayerActivity.this).build();
-        MediaItem mediaItem = MediaItem.fromUri("https://a128-z3.zmdcdn.me/945f3ce83dd0eb820aa0e05cce267c5b?authen=exp=1711198765~acl=/945f3ce83dd0eb820aa0e05cce267c5b/*~hmac=57fd4b6a54d8d7f7cc61d25bf8423d42&fs=MTmUsICxMTAyNTk2NTmUsIC3OHx3ZWJWNHwxMjUdUngMjM1LjE4OS4xMDI");
+        MediaItem mediaItem = MediaItem.fromUri("https://vnno-vn-5-tf-a128-z3.zmdcdn.me/945f3ce83dd0eb820aa0e05cce267c5b?authen=exp=1711375041~acl=/945f3ce83dd0eb820aa0e05cce267c5b/*~hmac=8154a96a8f33a0b440d7f63d89f34446&fs=MTmUsICxMTIwMjI0MTA4Nnx3ZWJWNHwxLjU0LjIwOC4xODY");
         //MediaItem mediaItem = MediaItem.fromUri(song.getSource());
 
         exoPlayer.setMediaItem(mediaItem);

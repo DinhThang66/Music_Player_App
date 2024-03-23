@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragment.LibraryFragment">
+    tools:context=".fragment.LibraryFragment"
+    android:id="@+id/fragment_library">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/group_name"
@@ -61,12 +62,13 @@
             android:textStyle="bold"
             android:layout_marginStart="16dp"/>
         <ImageView
+            android:id="@+id/search_btn"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:src="@drawable/ic_search"
             android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="10dp"/>
+            android:layout_marginEnd="10dp" />
     </RelativeLayout>
 
     <HorizontalScrollView

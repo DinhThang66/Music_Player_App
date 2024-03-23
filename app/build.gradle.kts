@@ -49,4 +49,7 @@ dependencies {
     implementation("com.squareup.picasso:picasso:2.5.2")
 
     implementation("com.google.android.exoplayer:exoplayer:2.18.7")
+
+    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")  // Vẽ biểu đồ
+
 }
