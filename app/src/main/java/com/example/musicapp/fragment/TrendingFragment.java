@@ -19,7 +19,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.musicapp.MainActivity2;
 import com.example.musicapp.R;
 import com.example.musicapp.adapter.SongAdapter;
 import com.example.musicapp.model.Song;
@@ -75,7 +74,7 @@ public class TrendingFragment extends Fragment implements OnChartValueSelectedLi
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(songAdapter);
         getData();
-        songAdapter.setData(getContext(), mListSong);
+        //songAdapter.setData(getContext(), mListSong);
 
         mChart = (CombinedChart) view.findViewById(R.id.combinedChart);
         displayChart();
@@ -108,14 +107,10 @@ public class TrendingFragment extends Fragment implements OnChartValueSelectedLi
                                 int index = thumbnail.indexOf("w94_r1x1_jpeg/");    //Xóa đi để lấy ảnh nét hơn
                                 String thumbnail1 = thumbnail.substring(0, index) + thumbnail.substring(index + "w94_r1x1_jpeg/".length());
 
-                                //String url = "http://mp3.zing.vn/xhr/media/get-source?type=audio&key="+;
-
-                                String source = "https://a128-z3.zmdcdn.me/945f3ce83dd0eb820aa0e05cce267c5b?authen=exp=1711281444~acl=/945f3ce83dd0eb820aa0e05cce267c5b/*~hmac=ec658ffa63bca0d97448ca84944927cd&fs=MTmUsICxMTEwODY0NDY1N3x3ZWJWNHwxMDMdUngMTk5LjMzLjM4";
-
                                mListSong.add(new Song(id, name_song, name_artist,
                                        thumbnail1, position,
-                                       lyric, source, code, duration));
-                                songAdapter.notifyDataSetChanged();
+                                       lyric, null, code, duration));
+                                songAdapter.setData(getContext(), mListSong);
                             }
 
                         }catch (JSONException e){
@@ -132,7 +127,7 @@ public class TrendingFragment extends Fragment implements OnChartValueSelectedLi
     }
     private void displayChart() {
         mChart.getDescription().setEnabled(false);
-        mChart.setBackgroundColor(Color.parseColor("#35234b"));
+        //mChart.setBackgroundColor(Color.parseColor("#35234b"));
         mChart.setDrawGridBackground(false);
         mChart.setDrawBarShadow(false);
         mChart.setHighlightFullBarEnabled(false);
@@ -207,7 +202,8 @@ public class TrendingFragment extends Fragment implements OnChartValueSelectedLi
                                     int counter = jsonObject2.getInt("counter");
                                     entries.add(new Entry(j-11, counter));
                                 }
-                                LineDataSet dataSet = new LineDataSet(entries, "Bài hát top " + String.valueOf(i+1));
+                                //LineDataSet dataSet = new LineDataSet(entries, "Bài hát top " + String.valueOf(i+1));
+                                LineDataSet dataSet = new LineDataSet(entries, null);
 
                                 dataSet.setCircleColor(Color.RED);
                                 dataSet.setFillColor(Color.RED);

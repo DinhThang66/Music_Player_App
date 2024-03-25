@@ -2,6 +2,7 @@ package com.example.musicapp.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +14,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.musicapp.MainActivity2;
 import com.example.musicapp.PlayerActivity;
 import com.example.musicapp.R;
 import com.example.musicapp.model.Song;
@@ -23,7 +23,9 @@ import java.util.ArrayList;
 
 public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongViewHolder> {
     Context mContext;
-    private ArrayList<Song> mList;
+    public static ArrayList<Song> mList;    // Truyền đến PlayerActivity
+
+
     public void setData(Context mContext, ArrayList<Song> list){
         this.mContext = mContext;
         this.mList = list;
@@ -51,20 +53,28 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongViewHolder
         }
 
         holder.tv_index.setText(song.getPosition());
+        if (position == 0){
+            holder.tv_index.setTextColor(Color.parseColor("#3468f0"));
+        } else if (position == 1) {
+            holder.tv_index.setTextColor(Color.parseColor("#15c5a1"));
+        } else if (position == 2) {
+            holder.tv_index.setTextColor(Color.parseColor("#e57437"));
+        }
+
         holder.tv_nameSong.setText(song.getName_song());
         holder.tv_nameArtist.setText(song.getName_artist());
         Picasso.with(mContext).load(song.getThumbnail()).into(holder.thumbnail_img);// do data vao img_icon
         holder.item_song.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onClickGoToPlayerActivity(song);
+                onClickGoToPlayerActivity(position);
             }
         });
     }
-    private void onClickGoToPlayerActivity(Song song) {
+    private void onClickGoToPlayerActivity(int position) {
         Intent intent = new Intent(mContext, PlayerActivity.class);
         Bundle bundle = new Bundle();
-        bundle.putSerializable("object_song", song);
+        bundle.putInt("position", position);
         intent.putExtras(bundle);
         mContext.startActivity(intent);
     }

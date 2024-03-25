@@ -1,21 +1,17 @@
 package com.example.musicapp.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.example.musicapp.MainActivity2;
 import com.example.musicapp.R;
 import com.example.musicapp.adapter.ViewPagerAdapter2;
 import com.google.android.material.tabs.TabLayout;

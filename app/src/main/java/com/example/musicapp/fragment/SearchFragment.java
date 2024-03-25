@@ -1,29 +1,49 @@
 package com.example.musicapp.fragment;
 
+import android.app.Activity;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.viewpager2.widget.ViewPager2;
 
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.example.musicapp.R;
+import com.example.musicapp.adapter.MusicViewPagerAdapter;
+import com.example.musicapp.adapter.ViewPagerAdapter3;
+import com.example.musicapp.databinding.ActivityTestBinding;
+import com.example.musicapp.databinding.FragmentSearchBinding;
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 
 
 public class SearchFragment extends Fragment {
     public static String TAG = SearchFragment.class.getName();
-    Button button;
+    ImageButton button;
+    EditText edt_search;
+    ViewPager2 viewPager2;
+    TabLayout tabLayout;
+
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_search, container, false);
+        //fragmentSearchBinding = FragmentSearchBinding.inflate(inflater, container, false);
 
-        button = view.findViewById(R.id.button2);
+        button = view.findViewById(R.id.btn_back);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -32,30 +52,68 @@ public class SearchFragment extends Fragment {
                 }
             }
         });
-        view.setOnTouchListener(new View.OnTouchListener() {
+
+        edt_search = view.findViewById(R.id.edt_search);
+        edt_search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    if (!isInsideFragment(v, event)) {
-                        getFragmentManager().popBackStack();
-                        return true;
-                    }
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH){
+                    // logic search
+                    handleSearch();
                 }
-                return true;
+                return false;
             }
         });
+
+        viewPager2 = view.findViewById(R.id.viewpager_2);
+        tabLayout = view.findViewById(R.id.tab_layout1);
+        initUI(view);
+
 
         return view;
     }
 
-    private boolean isInsideFragment(View v, MotionEvent event) {
-        View view = getView();
-        int[] location = new int[2];
-        view.getLocationOnScreen(location);
-        int x = (int) event.getRawX();
-        int y = (int) event.getRawY();
-        return x >= location[0] && x <= location[0] + view.getWidth() &&
-                y >= location[1] && y <= location[1] + view.getHeight();
+    private void handleSearch() {
+
+
+
+        hideSoftKeyBoard();
+    }
+    public void hideSoftKeyBoard() {
+        try {
+            InputMethodManager inputMethodManager = (InputMethodManager)
+                    getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+    private void initUI(View view) {
+        ViewPagerAdapter3 viewPagerAdapter3 = new ViewPagerAdapter3(this);
+        viewPager2.setAdapter(viewPagerAdapter3);
+        new TabLayoutMediator(tabLayout, viewPager2, new TabLayoutMediator.TabConfigurationStrategy() {
+            @Override
+            public void onConfigureTab(@NonNull TabLayout.Tab tab, int i) {
+                switch (i){
+                    case 0:
+                        tab.setIcon(R.drawable.ic_smartphone);
+                        break;
+                    case 1:
+                        tab.setText("Bài hát");
+                        break;
+                    case 2:
+                        tab.setText("Album");
+                        break;
+                    case 3:
+                        tab.setText("Nghệ sĩ");
+                        break;
+                }
+
+            }
+        }).attach();
+
+
     }
 
 

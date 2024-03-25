@@ -29,6 +29,9 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -51,5 +54,7 @@ dependencies {
     implementation("com.google.android.exoplayer:exoplayer:2.18.7")
 
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")  // Vẽ biểu đồ
+
+    implementation("me.relex:circleindicator:2.1.6") // Indicator
 
 }

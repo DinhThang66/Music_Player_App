@@ -81,4 +81,5 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setUserInputEnabled(false);   // chỉ đổi tab bằng bottomNavBar
     }
 
+
 }

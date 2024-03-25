@@ -10,8 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.example.musicapp.MainActivity2;
 import com.example.musicapp.R;
+import com.example.musicapp.TestActivity;
 
 
 public class DiscoveryFragment extends Fragment {
@@ -31,7 +31,7 @@ public class DiscoveryFragment extends Fragment {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(view.getContext(), MainActivity2.class); // screen switch
+                Intent intent = new Intent(view.getContext(), TestActivity.class); // screen switch
                 startActivity(intent);
             }
         });

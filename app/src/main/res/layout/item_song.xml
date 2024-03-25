@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_gravity="center"
-    android:background="#281d3b"
+    android:background="#160f43"
     android:id="@+id/item_song">
 
     <androidx.cardview.widget.CardView
